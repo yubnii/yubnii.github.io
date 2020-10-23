@@ -36,7 +36,8 @@
         var vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 url: './seoul.geojson',
-                format: new ol.format.GeoJSON()
+				    format: new ol.format.GeoJSON({
+						   featureProjection:'EPSG:3857' })
             }),
             style:  new ol.style.Style({
                     stroke: new ol.style.Stroke({
