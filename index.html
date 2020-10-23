@@ -33,9 +33,9 @@
 
         });
 
-        var vectorLayer = new ol.layer.Vector({
+        var emd01 = new ol.layer.Vector({
             source: new ol.source.Vector({
-                url: './seoul.geojson',
+                url: './emd02.geojson',
 				    format: new ol.format.GeoJSON({
 						   featureProjection:'EPSG:3857' })
             }),
@@ -45,6 +45,47 @@
                 })
             })
         });
+
+       var emd02 = new ol.layer.Vector({
+            source: new ol.source.Vector({
+                url: './emd02.geojson',
+				    format: new ol.format.GeoJSON({
+						   featureProjection:'EPSG:3857' })
+            }),
+            style:  new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                    color: "red"
+                })
+            })
+        });
+
+	var emd04= new ol.layer.Vector({
+            source: new ol.source.Vector({
+                url: './emd04.geojson',
+				    format: new ol.format.GeoJSON({
+						   featureProjection:'EPSG:3857' })
+            }),
+            style:  new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                    color: "red"
+                })
+            })
+        });
+
+	var emd03= new ol.layer.Vector({
+            source: new ol.source.Vector({
+                url: './emd03.geojson',
+				    format: new ol.format.GeoJSON({
+						   featureProjection:'EPSG:3857' })
+            }),
+            style:  new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                    color: "red"
+                })
+            })
+        });
+
+	
 
         map.addLayer(vectorLayer);
 
