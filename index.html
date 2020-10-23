@@ -41,7 +41,7 @@
 	    });
 	//시도별(17) 분할하여 가져오기
 	for(let i = 1; i < 18; i++){
-		$.getJSON(./emd0"+i+".geojson", function(data) {
+		$.getJSON("./emd0"+i+".geojson", function(data) {
 			emdSource.addFeatures((new ol.format.GeoJSON()).readFeatures(data));
  		});	
 	}	
