@@ -1,67 +1,70 @@
 ﻿<html>
-    <head>
-        <title>ex1</title>
-        <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css">
-        <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
-        <style>
+
+<head>
+    <title>ex1</title>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css">
+    <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+    <style>
         .map {
             height: 800px;
             width: 100%;
         }
-        </style>
-    </head>
-    <body>
+    </style>
+</head>
 
-        <h2>분석 결과 시각화</h2>
-        <div id="map" class="map"></div>
+<body>
+
+    <h2>분석 결과 시각화</h2>
+    <div id="map" class="map"></div>
 
 
-        <script type="text/javascript">
-
+    <script type="text/javascript">
         var map = new ol.Map({
             target: 'map',
             layers: [
                 new ol.layer.Tile({
-                source: new ol.source.OSM()
+                    source: new ol.source.OSM()
                 })
             ],
             view: new ol.View({
                 zoom: 7,
-                center : ol.proj.fromLonLat([128.317960,36.4203004])
+                center: ol.proj.fromLonLat([128.317960, 36.4203004])
             }),
 
         });
-	
 
-        	var emdSource= new ol.source.Vector({
-		format: new ol.format.GeoJSON({
-			featureProjection:'EPSG:3857'
-		})
-	    });
-	//시도별(17) 분할하여 가져오기
-	//for(let i = 1; i < 18; i++){
-	//	$.getJSON("./emd0"+i+".geojson", function(data) {
-		 $.getJSON("./emd09.geojson", function(data) {
 
-			emdSource.addFeatures((new ol.format.GeoJSON()).readFeatures(data));
- 		});	
-	//}	
+        var emdSource = new ol.source.Vector({
+            format: new ol.format.GeoJSON({
+                featureProjection: 'EPSG:3857'
+            })
+        });
 
-	var vectorLayer= new ol.layer.Vector({
+        //시도별(17) 분할하여 가져오기
+        //for(let i = 1; i < 18; i++){
+        //	$.getJSON("./emd0"+i+".geojson", function(data) {
+        //      do something
+        //  })
+        //}
+        $.getJSON("./emd09.geojson", function (data) {
+
+            emdSource.addFeatures((new ol.format.GeoJSON()).readFeatures(data));
+        });	
+
+        var vectorLayer = new ol.layer.Vector({
             source: emdSource,
-            style:  new ol.style.Style({
-                    stroke: new ol.style.Stroke({
+            style: new ol.style.Style({
+                stroke: new ol.style.Stroke({
                     color: "red"
                 })
             })
-        });	
+        });
 
         map.addLayer(vectorLayer);
+    </script>
 
+</body>
 
-       
-        </script>
-        
-    </body>
 </html>
